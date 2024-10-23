@@ -20,49 +20,6 @@ export class BackendStack extends cdk.Stack {
             vpc: vpc
         });
 
-        // fargate task definition
-        // task definition is a blueprint that describes how a Docker container should run
-        //  Ensure that the total resource allocation for the task is within the limits specified. 
-        // const fargateTaskDef = new ecs.FargateTaskDefinition(this, 'BackendFargateTaskDef', {
-        //     memoryLimitMiB: 512,
-        //     cpu: 256,
-        // });
-
-        // fargate container
-        // Allow you to allocate resources to individual containers within the task.
-        // const fargateContainer = fargateTaskDef.addContainer('BackendFargateContainer', {
-        //     image: ecs.ContainerImage.fromAsset('../backend'),
-        //     memoryLimitMiB: 512,
-        //     cpu: 256,
-        //     environment: {
-        //         myVar: 'myValue'
-        //     }
-        // });
-
-        // Create the Application Load Balancer
-        // const alb = new elbv2.ApplicationLoadBalancer(this, 'ALB', {
-        //     vpc,
-        //     internetFacing: true
-        // });
-
-        // const listener = alb.addListener('Listener', {
-        //     port: 80,
-        //     open: true
-        // });
-
-        // // Create the Target Group
-        // const targetGroup = listener.addTargets('ECS', {
-        //     port: 80,
-        //     targets: []
-        // });
-
-        // fargate service
-        // const fargateService = new ecs.FargateService(this, 'BackendFargateService', {
-        //     cluster: fargateCluster,
-        //     taskDefinition: fargateTaskDef,
-        //     desiredCount: 1
-        // });
-
         // fargate service L3 construct 
         // it contain the ALB it self
         // memory and cup assign to the task definition 
