@@ -3,6 +3,7 @@ import { Vpc } from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
 import * as ecs from "aws-cdk-lib/aws-ecs";
 import { ApplicationLoadBalancedFargateService } from 'aws-cdk-lib/aws-ecs-patterns';
+import * as path from 'path';
 
 export class BackendStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -20,6 +21,10 @@ export class BackendStack extends cdk.Stack {
             vpc: vpc
         });
 
+        // Absolute path to the Docker image directory
+        const dockerImagePath = path.resolve(__dirname, '../backend');
+
+
         // fargate service L3 construct 
         // it contain the ALB it self
         // memory and cup assign to the task definition 
@@ -29,7 +34,7 @@ export class BackendStack extends cdk.Stack {
             cpu: 512,
             desiredCount: 2,
             taskImageOptions: {
-                image: ecs.ContainerImage.fromRegistry('../backend'),
+                image: ecs.ContainerImage.fromAsset(dockerImagePath),
                 environment: {
                     myVar: 'myValue'
                 }
