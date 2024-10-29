@@ -43,9 +43,9 @@ export class BackendStack extends cdk.Stack {
 
         // load balancer url
         // to refernce it cloud front 
-        new cdk.CfnOutput(this, 'LoadBalancerDNS', { 
+        new cdk.CfnOutput(this, 'loadBalancerUrl', { 
             value: fargateService.loadBalancer.loadBalancerDnsName,
-            exportName: 'LoadBalancerDNS'
+            exportName: 'loadBalancerUrl'
         });
 
     }
